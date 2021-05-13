@@ -144,6 +144,10 @@ public:
         }
     }
     
+    const Node& get_root() const{
+        return PROGRAM;
+    }
+    
 
 private:
     
@@ -189,7 +193,7 @@ private:
     
     bool is_Id(){
         int word_id = lex_result[cur].second;
-        return KEY_WORDS[word_id-1] == "Id";
+        return KEY_WORDS[word_id-1] == _Id_;
     }
     
     bool is_Number(){
@@ -249,7 +253,7 @@ private:
     
     // HEADER -> H_Stmts
     Node proc_HEADER(){
-        Node HEADER("HEADER");
+        Node HEADER(_HEADER_);
         HEADER.add_son(proc_H_Stmts());
         return HEADER;
     }
@@ -402,7 +406,7 @@ private:
         
         // IF
         else if(get_word() == "if"){
-            Stmt.add_son(proc_IF());
+            Stmt.add_son(proc_IF_Block());
         }
         
         // WHILE
@@ -445,9 +449,9 @@ private:
     // IF -> if ( Expr ) Block |
     //       if ( Expr ) Block ELSE |
     //       if ( Expr ) Block ELSE_IF ELSE
+    
     Node proc_IF(){
-        Node IF("IF");
-        
+        Node IF(_IF);
         check_add(IF, "if");
         check_add(IF, "(");
         
@@ -456,22 +460,30 @@ private:
         check_add(IF, ")");
         
         IF.add_son(proc_Block());
+        return IF;
+    }
+    
+    Node proc_IF_Block(){
+        
+        Node IF_Block(_IF_Block);
+        
+        IF_Block.add_son(proc_IF());
         
         
         while(get_word() == "else if"){
-            IF.add_son(proc_ELSE_IF());
+            IF_Block.add_son(proc_ELSE_IF());
         }
         
         
         if(get_word() == "else"){
-            IF.add_son(proc_ELSE());
+            IF_Block.add_son(proc_ELSE());
         }
-        return IF;
+        return IF_Block;
     }
     
     // ELSE -> else Block
     Node proc_ELSE(){
-        Node ELSE("ELSE");
+        Node ELSE(_ELSE);
         
         check_add(ELSE, "else");
 
@@ -482,7 +494,7 @@ private:
     
     // ELSE_IF -> else if ( Expr ) Block | else if ( Expr ) Block ELSE_IF
     Node proc_ELSE_IF(){
-        Node ELSE_IF("ELSE_IF");
+        Node ELSE_IF(_ELSE_IF);
         
         check_add(ELSE_IF, "else if");
         check_add(ELSE_IF, "(");
@@ -534,7 +546,7 @@ private:
     
     // Decl -> Type Descs
     Node proc_Decl(){
-        Node Decl("Decl");
+        Node Decl(_Decl_);
         
         Decl.add_son(proc_Type());
         Decl.add_son(proc_Descs());
@@ -545,7 +557,7 @@ private:
     
     // Descs -> Desc | Desc , Descs
     Node proc_Descs(){
-        Node Descs("Descs");
+        Node Descs(_Descs_);
         Descs.add_son(proc_Desc());
         while(get_word()==","){
             check_add(Descs, ",");
@@ -556,7 +568,7 @@ private:
     
     // Desc -> Id | Asig_E
     Node proc_Desc(){
-        Node Desc("Desc");
+        Node Desc(_Desc_);
         if(is_Id() && get_next_word()=="="){
             Desc.add_son(proc_Asig_E());
         }
@@ -611,8 +623,8 @@ private:
             return Factor;
         }
         else{
-            Node Id("Id");
-            //create Node("a1") and add it to Node("Id")
+            Node Id(_Id_);
+            //create Node("a1") and add it to Node(_Id_)
             check_add(Id, get_word());
             return Id;
         }
@@ -647,7 +659,7 @@ private:
     
     // Asig_E -> Id = Expr
     Node proc_Asig_E(){
-        Node Asig_E("Asig_E");
+        Node Asig_E(_Asig_E_);
         
         Asig_E.add_son(proc_Id());
         

@@ -18,7 +18,19 @@
 #define INT "int"
 #define FLOAT "float"
 #define BOOL "bool"
-#define STRUCT "struct"
+
+#define _HEADER_ "HEADER"
+#define _Descs_ "Descs"
+#define _Desc_ "Desc"
+#define _Id_ "Id"
+#define _Asig_E_ "Asig_E"
+#define _Decl_ "Decl"
+#define _IF_Block "IF_Block"
+#define _IF "IF"
+#define _ELSE_IF "IF_ELSE"
+#define _ELSE "ELSE"
+
+
 
 using namespace std;
 

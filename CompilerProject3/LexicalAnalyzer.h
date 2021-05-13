@@ -197,7 +197,7 @@ private:
         }
         if(code[cur+n] == '.'){
             n++;
-            while(is_octal_digit(code[cur+n])){
+            while(isdigit(code[cur+n])){
                 n++;
             }
             string num = code.substr(cur, n);

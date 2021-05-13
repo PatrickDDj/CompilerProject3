@@ -16,16 +16,12 @@ bool is_same_type(const Variable& a, const Variable b){
 }
 
 int main(int argc, const char * argv[]) {
-//    LexicalAnalyzer lex("p2.txt");
-//
-//    GrammarAnalyzer grammar(lex.lex_result);
-//
-//    grammar.draw_AST("AST.txt");
-    
-    Variabls_MAP v;
+    LexicalAnalyzer lex("p2.txt");
+    GrammarAnalyzer grammar(lex.lex_result);
+    grammar.draw_AST("AST.txt");
 
-    v.add_Variable(0, "a", INT, 1);
-    v.add_Variable(1, "b", BOOL, true);
+    SemanticAnalyzer se(grammar.get_root());
+    se.semantic_analysis();
     
     
 }
