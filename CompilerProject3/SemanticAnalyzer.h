@@ -42,17 +42,19 @@ public:
         return type;
     }
     
+    
+    
 };
 
 
 
-class Variabls{
+class VariablsManager{
 public:
     map<int, map<string, Variable> > variables;
 
-    Variabls(){}
+    VariablsManager(){}
     
-    bool exists(int scope, string variable_name){
+    bool exists_variable(int scope, string variable_name){
         if(variables.find(scope) != variables.end() &&
            variables[scope].find(variable_name) != variables[scope].end() ){
             return true;
@@ -60,23 +62,35 @@ public:
         return false;
     }
     
-    Variable& get(int scope, string variable_name){
+    const Variable& get_variable(int scope, string variable_name){
         return variables[scope][variable_name];
     }
     
-    int seek(const vector<int> usable_scopes, string variable_name){
+    int seek_variable(const vector<int> usable_scopes, string variable_name){
         for(int i=usable_scopes.size()-1; i>=0; i--){
             int scope = usable_scopes[i];
-            if(exists(scope, variable_name)){
+            if(exists_variable(scope, variable_name)){
                 return scope;
             }
         }
         return 0;
     }
     
-    void add(int scope, string variable_name, string type){
+    void add_variable(int scope, string variable_name, string type){
         Variable v(type);
         get(scope, variable_name) = v;
+    }
+    
+    void set_variable(int scope, string variable_name, bool val){
+        get(scope, variable_name).bool_val = val;
+    }
+    
+    void set_variable(int scope, string variable_name, int val){
+        get(scope, variable_name).int_val = val;
+    }
+    
+    void set_variable(int scope, string variable_name, float val){
+        get(scope, variable_name).float_val = val;
     }
     
     void print_variables(){
@@ -89,10 +103,14 @@ public:
             }
         }
     }
+private:
+    Variable& get(int scope, string variable_name){
+        return variables[scope][variable_name];
+    }
 };
 
 
-class ScopeTool{
+class ScopeManager{
 private:
     vector<int> usable_scopes;
     
@@ -100,7 +118,7 @@ private:
     int cur_scope;
 
 public:
-    ScopeTool(){}
+    ScopeManager(){}
     
     void set_cur_scope(int scope){
         cur_scope = scope;
@@ -110,7 +128,7 @@ public:
         this->HEADER_scope = HEADER_scope;
     }
     
-    vector<int>& get_cur_usable_scopes(){
+    const vector<int>& get_cur_usable_scopes(){
         return usable_scopes;
     }
     
@@ -124,11 +142,11 @@ public:
     
     void jump_into_Block(int Block_id){
         set_cur_scope(Block_id);
-        get_cur_usable_scopes().push_back(Block_id);
+        usable_scopes.push_back(Block_id);
     }
     
     void jump_out_Block(){
-        get_cur_usable_scopes().pop_back();
+        usable_scopes.pop_back();
         set_cur_scope(get_cur_usable_scopes().back());
     }
 };
@@ -137,10 +155,9 @@ class SemanticAnalyzer {
 public:
     
     Node root;
-    Variabls variables;
     
-    ScopeTool scopes;
-    
+    VariablsManager variables;
+    ScopeManager scopes;
     
     SemanticAnalyzer(const Node& root):root(root){}
     
@@ -180,29 +197,55 @@ public:
     
     void proc_Stmt(const Node& Stmt){
         string stmt = Stmt.Component;
-        if(stmt == _Asig_E_){
-            proc_Asig_E(Stmt);
+        int symbol = SYMBOL_MAP[Stmt.Component];
+        
+        
+        switch (symbol) {
+            case __Asig_E__:
+                proc_Asig_E(Stmt);
+                break;
+            case __Decl__:
+                proc_Decl(Stmt);
+                break;
+            case __IF_Block__:
+                proc_IF_Block(Stmt);
+                break;
+                
+            default:
+                break;
         }
-        else if(stmt == _Decl_){
-            proc_Decl(Stmt);
-        }
-        else if(stmt == _IF_Block_){
-            proc_IF_Block(Stmt);
-        }
+//        if(stmt == _Asig_E_){
+//            proc_Asig_E(Stmt);
+//        }
+//        else if(stmt == _Decl_){
+//            proc_Decl(Stmt);
+//        }
+//        else if(stmt == _IF_Block_){
+//            proc_IF_Block(Stmt);
+//        }
     }
     
     void proc_IF_Block(const Node& IF_Block){
         for(auto i : IF_Block.sons){
-            string t = i.Component;
-            if(t==_IF_){
-                proc_IF(i);
+            int symbol = SYMBOL_MAP[i.Component];
+            
+            
+            switch (symbol) {
+                case __IF__:
+                    proc_IF(i);
+                    break;
+                case __ELSE_IF__:
+                    proc_ELSE_IF(i);
+                    break;
+                case __ELSE__:
+                    proc_ELSE(i);
+                    break;
+                    
+                default:
+                    break;
             }
-            else if(t == _ELSE_IF_){
-                proc_ELSE_IF(i);
-            }
-            else if(t == _ELSE_){
-                proc_ELSE(i);
-            }
+            
+            
         }
     }
     
@@ -229,8 +272,8 @@ public:
     // initialize this variable by assigning default value
     bool declare_variable(const Node& Id, string type){
         string variable_name = Id.sons[0].Component;
-        if(!variables.exists(scopes.get_cur_scope(), variable_name)){
-            variables.add(scopes.get_cur_scope() , variable_name, type);
+        if(!variables.exists_variable(scopes.get_cur_scope(), variable_name)){
+            variables.add_variable(scopes.get_cur_scope() , variable_name, type);
             return true;
         }
         
@@ -243,12 +286,13 @@ public:
         string variable_name = Asig_E.sons[0].sons[0].Component;
         
         // seek this variable(type value) through the current usable scopes and its name
-        int scope = variables.seek(scopes.get_cur_usable_scopes(), variable_name);
+        int scope = variables.seek_variable(scopes.get_cur_usable_scopes(), variable_name);
         
         if(scope){
-            
             // TODO: calculate the value of expression/factor
-            printf("Asig_E\n");
+            variables.set_variable(scope, variable_name, 99);
+            float i = 9.9l;
+            variables.set_variable(scope, variable_name, i);
             
         }
         else{
@@ -262,29 +306,40 @@ public:
         
         for(auto Desc : Decl.sons[1].sons){
             if(Desc.Component == _Desc_){
+
+                int desc_type = SYMBOL_MAP[Desc.sons[0].Component];
                 
-                string Desc_type = Desc.sons[0].Component;
                 
-                // Desc -> Id
-                if(Desc_type == _Id_){
-                    declare_variable(Desc.sons[0], type);
+                switch (desc_type) {
+                    case __Id__:
+                        declare_variable(Desc.sons[0], type);
+                        break;
+                        
+                    case __Asig_E__:
+                        if(declare_variable(Desc.sons[0].sons[0], type)){
+                            proc_Asig_E(Desc.sons[0]);
+                        }
+                        break;
+                        
+                    default:
+                        break;
                 }
                 
-                //Desc -> Asig_E
-                else if(Desc_type == _Asig_E_){
-                    if(declare_variable(Desc.sons[0].sons[0], type)){
-                        proc_Asig_E(Desc.sons[0]);
-                    }
-                    
-                }
+                
             }
         }
     }
     
     void proc_H_Stmt(const Node& H_Stmt){
+        int symbol = SYMBOL_MAP[H_Stmt.Component];
         
-        if(H_Stmt.Component == _Decl_){
-            proc_Decl(H_Stmt);
+        switch (symbol) {
+            case __Decl__:
+                proc_Decl(H_Stmt);
+                break;
+                
+            default:
+                break;
         }
     }
     

@@ -30,10 +30,31 @@
 #define _ELSE_IF_ "IF_ELSE"
 #define _ELSE_ "ELSE"
 
-
+#define __HEADER__ 1
+#define __Descs__ 2
+#define __Desc__ 3
+#define __Id__ 4
+#define __Asig_E__ 5
+#define __Decl__ 6
+#define __IF_Block__ 7
+#define __IF__ 8
+#define __ELSE_IF__ 9
+#define __ELSE__ 10
 
 using namespace std;
 
+map<string, int> SYMBOL_MAP = {
+    {_HEADER_, __HEADER__},
+    {_Descs_, __Descs__},
+    {_Desc_, __Desc__},
+    {_Id_, __Id__},
+    {_Asig_E_, __Asig_E__},
+    {_Decl_, __Decl__},
+    {_IF_Block_, __IF_Block__},
+    {_IF_, __IF__},
+    {_ELSE_IF_, __ELSE_IF__},
+    {_ELSE_, __ELSE__},
+};
 
 const vector<string> KEY_WORDS = {
     "main", "include", "void", "return",

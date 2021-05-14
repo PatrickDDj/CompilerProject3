@@ -40,6 +40,9 @@ PROGRAM-HEADER--H_Stmts-H_Stmt--FunDef--Type----void
                                                                 =       
                                                                 Factor--Decimal_Number1       
                                 ;       
+                        H_Stmt--Decl----Type----float   
+                                        Descs---Desc----Id------x       
+                                ;       
         MAIN----int     
                 main    
                 (       
@@ -94,6 +97,10 @@ PROGRAM-HEADER--H_Stmts-H_Stmt--FunDef--Type----void
                                                                         Factor--Decimal_Number2       
                                         ;       
                                 Stmt----Asig_E--Id------c       
+                                                =       
+                                                Factor--Decimal_Number7       
+                                        ;       
+                                Stmt----Asig_E--Id------x       
                                                 =       
                                                 Factor--Decimal_Number7       
                                         ;       
