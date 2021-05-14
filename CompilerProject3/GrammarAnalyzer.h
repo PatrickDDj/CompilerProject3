@@ -451,7 +451,7 @@ private:
     //       if ( Expr ) Block ELSE_IF ELSE
     
     Node proc_IF(){
-        Node IF(_IF);
+        Node IF(_IF_);
         check_add(IF, "if");
         check_add(IF, "(");
         
@@ -465,7 +465,7 @@ private:
     
     Node proc_IF_Block(){
         
-        Node IF_Block(_IF_Block);
+        Node IF_Block(_IF_Block_);
         
         IF_Block.add_son(proc_IF());
         
@@ -483,7 +483,7 @@ private:
     
     // ELSE -> else Block
     Node proc_ELSE(){
-        Node ELSE(_ELSE);
+        Node ELSE(_ELSE_);
         
         check_add(ELSE, "else");
 
@@ -494,7 +494,7 @@ private:
     
     // ELSE_IF -> else if ( Expr ) Block | else if ( Expr ) Block ELSE_IF
     Node proc_ELSE_IF(){
-        Node ELSE_IF(_ELSE_IF);
+        Node ELSE_IF(_ELSE_IF_);
         
         check_add(ELSE_IF, "else if");
         check_add(ELSE_IF, "(");

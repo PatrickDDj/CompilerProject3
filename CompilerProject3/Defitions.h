@@ -25,10 +25,10 @@
 #define _Id_ "Id"
 #define _Asig_E_ "Asig_E"
 #define _Decl_ "Decl"
-#define _IF_Block "IF_Block"
-#define _IF "IF"
-#define _ELSE_IF "IF_ELSE"
-#define _ELSE "ELSE"
+#define _IF_Block_ "IF_Block"
+#define _IF_ "IF"
+#define _ELSE_IF_ "IF_ELSE"
+#define _ELSE_ "ELSE"
 
 
 

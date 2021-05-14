@@ -25,6 +25,7 @@ int main(){
         int a = 5;
     }
     int a=2;
+    c = 7;
 }
 
 

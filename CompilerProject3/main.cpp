@@ -11,7 +11,7 @@
 
 vector<Variable> variables;
 
-bool is_same_type(const Variable& a, const Variable b){
+bool is_same_type(const Variable& a, const Variable &b){
     return a.type == b.type;
 }
 
@@ -22,6 +22,4 @@ int main(int argc, const char * argv[]) {
 
     SemanticAnalyzer se(grammar.get_root());
     se.semantic_analysis();
-    
-    
 }
