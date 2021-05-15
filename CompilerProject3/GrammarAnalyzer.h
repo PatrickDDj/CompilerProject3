@@ -199,7 +199,7 @@ private:
     bool is_Number(){
         int word_id = lex_result[cur].second;
         string word_type = KEY_WORDS[word_id-1];
-        return (word_type=="Octal_Number" || word_type=="Decimal_Number" || word_type=="Hexademical_Number" || word_type=="Float_Number");
+        return (word_type=="Octal_Number" || word_type==_Decimal_Number_ || word_type=="Hexademical_Number" || word_type==_Float_Number_);
     }
     
     bool is_TF(){
@@ -640,7 +640,7 @@ private:
     }
     
     Node proc_TF(){
-        Node TF("TF");
+        Node TF(_TF_);
         TF.add_son(Node(get_word()));
         cur++;
         return TF;

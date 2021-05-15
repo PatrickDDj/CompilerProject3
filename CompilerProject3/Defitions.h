@@ -15,9 +15,16 @@
 #include <sstream>
 #include <algorithm>
 
-#define INT "int"
-#define FLOAT "float"
-#define BOOL "bool"
+#define _INT_ "int"
+#define _FLOAT_ "float"
+#define _BOOL_ "bool"
+
+#define __INT__ 1
+#define __FLOAT__ 2
+#define __BOOL__ 3
+#define __Empty__ 0
+
+#define __EMPTY_SCOPE__ 0
 
 #define _HEADER_ "HEADER"
 #define _Descs_ "Descs"
@@ -29,19 +36,49 @@
 #define _IF_ "IF"
 #define _ELSE_IF_ "IF_ELSE"
 #define _ELSE_ "ELSE"
+#define _TF_ "TF"
+#define _Float_Number_ "Float_Number"
+#define _Decimal_Number_ "Decimal_Number"
+#define _Factor_ "Factor"
+#define _Expr_ "Expr"
+#define _LEFT_Bracket_ "("
+#define _ADD_ "+"
+#define _SUB_ "-"
+#define _MUL_ "*"
+#define _EQUAL_ "=="
 
-#define __HEADER__ 1
-#define __Descs__ 2
-#define __Desc__ 3
-#define __Id__ 4
-#define __Asig_E__ 5
-#define __Decl__ 6
-#define __IF_Block__ 7
-#define __IF__ 8
-#define __ELSE_IF__ 9
-#define __ELSE__ 10
+
+#define __HEADER__ 11
+#define __Descs__ 12
+#define __Desc__ 13
+#define __Id__ 14
+#define __Asig_E__ 15
+#define __Decl__ 16
+#define __IF_Block__ 17
+#define __IF__ 18
+#define __ELSE_IF__ 19
+#define __ELSE__ 20
+#define __Factor__ 21
+#define __Expr__ 22
+#define __LEFT_Bracket__ 23
+#define __ADD__ 24
+#define __SUB__ 25
+#define __MUL__ 26
+#define __EQUAL__ 27
 
 using namespace std;
+
+map<int, string> TYPE = {
+    {__INT__, _INT_},
+    {__FLOAT__, _FLOAT_},
+    {__BOOL__, _BOOL_},
+};
+
+map<string, int> TYPE_MAP = {
+    {_INT_, __INT__},
+    {_FLOAT_, __FLOAT__},
+    {_BOOL_, __BOOL__},
+};
 
 map<string, int> SYMBOL_MAP = {
     {_HEADER_, __HEADER__},
@@ -54,6 +91,16 @@ map<string, int> SYMBOL_MAP = {
     {_IF_, __IF__},
     {_ELSE_IF_, __ELSE_IF__},
     {_ELSE_, __ELSE__},
+    {_TF_, __BOOL__},
+    {_Decimal_Number_, __INT__},
+    {_Float_Number_, __FLOAT__},
+    {_Factor_, __Factor__},
+    {_Expr_, __Expr__},
+    {_LEFT_Bracket_, __LEFT_Bracket__},
+    {_ADD_, __ADD__},
+    {_SUB_, __SUB__},
+    {_MUL_, __MUL__},
+    {_EQUAL_, __EQUAL__},
 };
 
 const vector<string> KEY_WORDS = {

@@ -15,13 +15,6 @@ bool is_same_type(const Variable& a, const Variable &b){
     return a.type == b.type;
 }
 
-class A{
-public:
-    A(){}
-    void get(float a){cout << "float" << endl;}
-    void get(int a){cout << "int" << endl;}
-};
-
 int main(int argc, const char * argv[]) {
     LexicalAnalyzer lex("p2.txt");
     GrammarAnalyzer grammar(lex.lex_result);
