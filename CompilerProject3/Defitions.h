@@ -46,6 +46,12 @@
 #define _SUB_ "-"
 #define _MUL_ "*"
 #define _EQUAL_ "=="
+#define _GREATER_ ">"
+#define _LESS_ "<"
+#define _GREATER_or_EQUAL_ ">="
+#define _LESS_or_EQUAL_ "<="
+#define _PLUS_PLUS_ "++"
+#define _MINUS_MINUS_ "--"
 
 
 #define __HEADER__ 11
@@ -65,6 +71,12 @@
 #define __SUB__ 25
 #define __MUL__ 26
 #define __EQUAL__ 27
+#define __GREATER__ 28
+#define __LESS__ 29
+#define __GREATER_or_EQUAL__ 30
+#define __LESS_or_EQUAL__ 31
+#define __PLUS_PLUS__ 32
+#define __MINUS_MINUS__ 33
 
 using namespace std;
 
@@ -101,6 +113,12 @@ map<string, int> SYMBOL_MAP = {
     {_SUB_, __SUB__},
     {_MUL_, __MUL__},
     {_EQUAL_, __EQUAL__},
+    {_GREATER_, __GREATER__},
+    {_LESS_, __LESS__},
+    {_GREATER_or_EQUAL_, __GREATER_or_EQUAL__},
+    {_LESS_or_EQUAL_, __LESS_or_EQUAL__},
+    {_PLUS_PLUS_, __PLUS_PLUS__},
+    {_MINUS_MINUS_, __MINUS_MINUS__},
 };
 
 const vector<string> KEY_WORDS = {

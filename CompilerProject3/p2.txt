@@ -12,12 +12,12 @@ float x = 1.19;
 
 int main(){
     int a = 9900;
-    float y = x + x;
+    float y = (x--)+11.9;
     if(true){
         int b = a-10000+(98*2+1);
     }
-    bool hhhhhhh = 1==(true+1.2);
-    x = 1;
+    bool hhhhhhh = 1<(2*3+4+a);
+    int t = --a + 100;
     c = a;
 }
 

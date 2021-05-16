@@ -69,41 +69,6 @@
 // Number -> Decimal_Number | Octal_Number | Hexademical_Number
 
 
-//class Node{
-//public:
-//    string Component;
-//    vector<Node> sons;
-//    
-//    int id;
-//    
-//    static int cur_id;
-//    static const int format_length = 2;
-//    
-//    Node(string Component){
-//        this->Component = Component;
-//        id = ++cur_id;
-//    }
-//    
-//    void add_son(Node son){
-//        sons.push_back(son);
-//    }
-//    
-//    bool is_terminal() const {
-//        return sons.size() == 0;
-//    }
-//    
-//    string format_Component() const {
-//        string f_Component = Component;
-//        while(f_Component.length() < 4*format_length){
-//            f_Component += is_terminal()?" ":"-";
-//        }
-//        return f_Component;
-//    }
-//    
-//};
-//
-//int Node::cur_id = 0;
-
 class GrammarAnalyzer {
     
 public:
@@ -616,15 +581,18 @@ private:
             check_add(FunCall, ")");
             return FunCall;
         }
-        else if(get_next_word()=="++" || get_next_word()=="--"){
-            Node Factor("Factor");
-            check_add(Factor, get_word());
-            check_add(Factor, get_word());
-            return Factor;
-        }
+//        else if(get_next_word()=="++" || get_next_word()=="--"){
+//            Node Factor("Factor");
+////            check_add(Factor, get_word());
+////            Factor.add_son(proc_Id());
+//            Node Id(_Id_);
+//            check_add(Id, get_word());
+//            Factor.add_son(Id);
+//            check_add(Factor, get_word());
+//            return Factor;
+//        }
         else{
             Node Id(_Id_);
-            //create Node("a1") and add it to Node(_Id_)
             check_add(Id, get_word());
             return Id;
         }
@@ -674,7 +642,11 @@ private:
     Node proc_Factor(){
         Node Factor("Factor");
         
-        if(is_Id()){
+        if(is_Id() && (get_next_word()=="++" || get_next_word()=="--")){
+            Factor.add_son(proc_Id());
+            check_add(Factor, get_word());
+        }
+        else if(is_Id()){
             Factor.add_son(proc_Id());
         }
         else if(is_Number()){
@@ -695,7 +667,7 @@ private:
         else if(is_SingOp()){
             check_add(Factor, get_word());
             
-            Factor.add_son(proc_Factor());
+            Factor.add_son(proc_Id());
         }
         else{
             //error

@@ -93,6 +93,58 @@ public:
         return v;
     }
     
+    friend Variable operator>=(const Variable& a, const Variable& b){
+        Variable v(__BOOL__);
+        v.bool_val = (a.type==__INT__?a.int_val>=b.int_val:(a.type == __FLOAT__? a.float_val>=b.float_val:a.bool_val>=b.bool_val));
+        return v;
+    }
+    
+    friend Variable operator<=(const Variable& a, const Variable& b){
+        Variable v(__BOOL__);
+        v.bool_val = (a.type==__INT__?a.int_val<=b.int_val:(a.type == __FLOAT__? a.float_val<=b.float_val:a.bool_val<=b.bool_val));
+        return v;
+    }
+    
+    friend Variable operator>(const Variable& a, const Variable& b){
+        Variable v(__BOOL__);
+        v.bool_val = (a.type==__INT__?a.int_val>b.int_val:(a.type == __FLOAT__? a.float_val>b.float_val:a.bool_val>b.bool_val));
+        return v;
+    }
+    
+    friend Variable operator<(const Variable& a, const Variable& b){
+        Variable v(__BOOL__);
+        v.bool_val = (a.type==__INT__?a.int_val<b.int_val:(a.type == __FLOAT__? a.float_val<b.float_val:a.bool_val<b.bool_val));
+        return v;
+    }
+    
+    friend Variable operator++(Variable&a){
+        ++a.int_val;
+        ++a.float_val;
+        ++a.bool_val;
+        return Variable(a);
+    }
+    
+    friend Variable operator++(Variable&a, int){
+        Variable v(a);
+        a.int_val++;
+        a.float_val++;
+        a.bool_val++;
+        return v;
+    }
+    
+    friend Variable operator--(Variable&a){
+        --a.int_val;
+        --a.float_val;
+        return Variable(a);
+    }
+    
+    friend Variable operator--(Variable&a, int){
+        Variable v(a);
+        a.int_val--;
+        a.float_val--;
+        return v;
+    }
+    
     
 };
 
@@ -112,7 +164,7 @@ public:
         return false;
     }
     
-    const Variable& get_variable(int scope, string variable_name){
+    Variable& get_variable(int scope, string variable_name){
         return variables[scope][variable_name];
     }
     
@@ -134,7 +186,7 @@ public:
     bool add_variable(int scope, string variable_name, int type){
         if(!exists_variable(scope, variable_name)){
             Variable v(type);
-            get(scope, variable_name) = v;
+            get_variable(scope, variable_name) = v;
             return true;
         }
         printf("[ERROR] Variable '%s' redefined\n", variable_name.c_str());
@@ -142,7 +194,7 @@ public:
     }
     
     void set_variable(int scope, string variable_name, const Variable& v){
-        Variable& u = get(scope, variable_name);
+        Variable& u = get_variable(scope, variable_name);
         if(is_same_type(u, v)){
             u = v;
         }
@@ -171,6 +223,18 @@ public:
                 case __EQUAL__:{
                     return a==b;
                 }
+                case __GREATER__:{
+                    return a>b;
+                }
+                case __LESS__:{
+                    return a<b;
+                }
+                case __GREATER_or_EQUAL__:{
+                    return a>=b;
+                }
+                case __LESS_or_EQUAL__:{
+                    return a<=b;
+                }
             }
         }
         else{
@@ -191,10 +255,6 @@ public:
         }
     }
     
-private:
-    Variable& get(int scope, string variable_name){
-        return variables[scope][variable_name];
-    }
 };
 
 
@@ -413,7 +473,50 @@ public:
                 string variable_name = Factor.sons[0].sons[0].Component;
                 int scope = variables.seek_variable(scopes.get_cur_usable_scopes(), variable_name);
                 if(scope){
-                    return Variable(variables.get_variable(scope, variable_name));
+                    Variable& v = variables.get_variable(scope, variable_name);
+                    
+                    if(!(v.get_type()==_INT_ || v.get_type()==_FLOAT_)){
+                        printf("[ERROE] Only 'int' or 'float' variables can do '++'/'--' calucalation\n");
+                        break;
+                    }
+                    
+                    // a++ a--
+                    if (Factor.sons.size()>1){
+                        
+                        int single_op = SYMBOL_MAP[Factor.sons[1].Component];
+                        
+                        switch (single_op) {
+                            case __PLUS_PLUS__:
+                                return v++;
+                                
+                            case __MINUS_MINUS__:
+                                return v--;
+                        }
+                    }
+                    
+                    
+                    else{
+                        return Variable(v);
+                    }
+                    
+                }
+                break;
+            }
+            case __PLUS_PLUS__:{
+                string variable_name = Factor.sons[1].sons[0].Component;
+                int scope = variables.seek_variable(scopes.get_cur_usable_scopes(), variable_name);
+                if(scope){
+                    Variable& v = variables.get_variable(scope, variable_name);
+                    return ++v;
+                }
+                break;
+            }
+            case __MINUS_MINUS__:{
+                string variable_name = Factor.sons[1].sons[0].Component;
+                int scope = variables.seek_variable(scopes.get_cur_usable_scopes(), variable_name);
+                if(scope){
+                    Variable& v = variables.get_variable(scope, variable_name);
+                    return --v;
                 }
                 break;
             }
