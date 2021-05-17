@@ -4,7 +4,7 @@
 
 ## 1. Functions
 
-##### a. Declaration of  variables in differnt scope
+#### a. Declaration of  variables in differnt scope
 
 ```c++
 // global variables : a, x
@@ -23,7 +23,7 @@ int main(){
 
 
 
-##### b. Assignment of variables && Calculation between variables or constants
+#### b. Assignment of variables && Calculation between variables or constants
 
 ```c++
 // step into another scope
@@ -40,7 +40,7 @@ int main(){
 
 
 
-##### c. Definition of functions
+#### c. Definition of functions
 
 ```c++
 // define function without parameters
@@ -59,7 +59,7 @@ int f(int a, int b){
 
 ## 2. Errors
 
-##### a. Variables redefined in the same scope
+#### a. Variables redefined in the same scope
 
 ```c++
 int a = 9900;
@@ -70,7 +70,7 @@ int a = 0;
 
 
 
-##### b. Variables assigned as a differnt type
+#### b. Variables assigned as a differnt type
 
 ```c++
 // error : cannot assign variable 'i'(int) as float
@@ -79,7 +79,7 @@ int i = 1.11;
 
 
 
-##### c. Variables not defined yet in use
+#### c. Variables not defined yet in use
 
 ```
 //error : variable 'c' is not defined
@@ -88,7 +88,7 @@ c = a;
 
 
 
-##### d. Calculation between differnt types
+#### d. Calculation between differnt types
 
 ```
 //error : calculation between 'bool' and 'int' is illegal
@@ -97,7 +97,7 @@ h = 1+true;
 
 
 
-##### e. Function redefined
+#### e. Function redefined
 
 ```
 // error : redefinition of function 'f'
