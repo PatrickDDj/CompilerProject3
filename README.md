@@ -174,5 +174,5 @@ int main(){
 
 #### b. Results
 
-<img src="/Users/patrickdd/Projects/XcodeC++/CompilerProject3/results.png" style="zoom:50%;" />
+<img src="./results.png" style="zoom:50%;" />
 
