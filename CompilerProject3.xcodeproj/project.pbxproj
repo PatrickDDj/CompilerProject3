@@ -23,13 +23,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D62A111326520D890099E4AF /* Variable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Variable.h; sourceTree = "<group>"; };
+		D62A111526520E280099E4AF /* Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
 		D676E155264BE4C50062F5C3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D6CD7BA1264BBF4400FCC0EE /* SemanticAnalyzer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SemanticAnalyzer.h; sourceTree = "<group>"; };
 		D6F8952A2648D3A800434F79 /* CompilerProject3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CompilerProject3; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F8952D2648D3A800434F79 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		D6F895352648D3F100434F79 /* GrammarAnalyzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrammarAnalyzer.h; sourceTree = "<group>"; };
 		D6F895362648D3F100434F79 /* LexicalAnalyzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LexicalAnalyzer.h; sourceTree = "<group>"; };
-		D6F895372648D3F100434F79 /* Defitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defitions.h; sourceTree = "<group>"; };
 		D6F895382648D40B00434F79 /* Node.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
 		D6F8953A2648D50B00434F79 /* p2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = p2.txt; sourceTree = "<group>"; };
 		D6F8953C2648D59400434F79 /* AST.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AST.txt; sourceTree = "<group>"; };
@@ -66,14 +67,15 @@
 		D6F8952C2648D3A800434F79 /* CompilerProject3 */ = {
 			isa = PBXGroup;
 			children = (
+				D62A111526520E280099E4AF /* Defines.h */,
 				D6F8953C2648D59400434F79 /* AST.txt */,
 				D6F8953A2648D50B00434F79 /* p2.txt */,
-				D6F895372648D3F100434F79 /* Defitions.h */,
 				D6F895352648D3F100434F79 /* GrammarAnalyzer.h */,
 				D6F895362648D3F100434F79 /* LexicalAnalyzer.h */,
 				D6F8952D2648D3A800434F79 /* main.cpp */,
 				D6F895382648D40B00434F79 /* Node.h */,
 				D6CD7BA1264BBF4400FCC0EE /* SemanticAnalyzer.h */,
+				D62A111326520D890099E4AF /* Variable.h */,
 			);
 			path = CompilerProject3;
 			sourceTree = "<group>";
