@@ -18,11 +18,13 @@
 #define _INT_ "int"
 #define _FLOAT_ "float"
 #define _BOOL_ "bool"
+#define _VOID_ "void"
 
 #define __INT__ 1
 #define __FLOAT__ 2
 #define __BOOL__ 3
 #define __Empty__ 0
+#define __VOID__ 0
 
 #define __EMPTY_SCOPE__ 0
 
@@ -52,6 +54,8 @@
 #define _LESS_or_EQUAL_ "<="
 #define _PLUS_PLUS_ "++"
 #define _MINUS_MINUS_ "--"
+#define _Para_Def_ "ParaDef"
+#define _Fun_Def_ "FunDef"
 
 
 #define __HEADER__ 11
@@ -77,19 +81,25 @@
 #define __LESS_or_EQUAL__ 31
 #define __PLUS_PLUS__ 32
 #define __MINUS_MINUS__ 33
+#define __Para_Def__ 34
+#define __Fun_Def__ 35
 
 using namespace std;
+
+typedef pair<int, string> Parameter;
 
 map<int, string> TYPE = {
     {__INT__, _INT_},
     {__FLOAT__, _FLOAT_},
     {__BOOL__, _BOOL_},
+    {__VOID__, _VOID_},
 };
 
 map<string, int> TYPE_MAP = {
     {_INT_, __INT__},
     {_FLOAT_, __FLOAT__},
     {_BOOL_, __BOOL__},
+    {_VOID_, __VOID__},
 };
 
 map<string, int> SYMBOL_MAP = {
@@ -119,6 +129,8 @@ map<string, int> SYMBOL_MAP = {
     {_LESS_or_EQUAL_, __LESS_or_EQUAL__},
     {_PLUS_PLUS_, __PLUS_PLUS__},
     {_MINUS_MINUS_, __MINUS_MINUS__},
+    {_Fun_Def_, __Fun_Def__},
+    {_Para_Def_, __Para_Def__},
 };
 
 const vector<string> KEY_WORDS = {

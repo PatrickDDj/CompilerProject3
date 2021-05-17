@@ -35,6 +35,16 @@ PROGRAM-HEADER--H_Stmts-H_Stmt--FunDef--Type----void
                                                                                 Factor--Id------b       
                                                                 ;       
                                                 }       
+                        H_Stmt--FunDef--Type----int     
+                                        FunName-f       
+                                        (       
+                                        ParasDef
+                                        )       
+                                        Block---{       
+                                                Stmts---Stmt----RETURN--return  
+                                                                        Factor--Decimal_Number0       
+                                                                ;       
+                                                }       
                         H_Stmt--Decl----Type----int     
                                         Descs---Desc----Asig_E--Id------a       
                                                                 =       
@@ -56,6 +66,15 @@ PROGRAM-HEADER--H_Stmts-H_Stmt--FunDef--Type----void
                                                 Descs---Desc----Asig_E--Id------a       
                                                                         =       
                                                                         Factor--Decimal_Number9900    
+                                        ;       
+                                Stmt----Decl----Type----int     
+                                                Descs---Desc----Asig_E--Id------a       
+                                                                        =       
+                                                                        Factor--Decimal_Number0       
+                                        ;       
+                                Stmt----Asig_E--Id------a       
+                                                =       
+                                                Factor--Float_Number1.11    
                                         ;       
                                 Stmt----Decl----Type----float   
                                                 Descs---Desc----Asig_E--Id------y       
@@ -89,7 +108,7 @@ PROGRAM-HEADER--H_Stmts-H_Stmt--FunDef--Type----void
                                                                                 ;       
                                                                 }       
                                 Stmt----Decl----Type----bool    
-                                                Descs---Desc----Asig_E--Id------hhhhhhh 
+                                                Descs---Desc----Asig_E--Id------h       
                                                                         =       
                                                                         Expr----Factor--Decimal_Number1       
                                                                                 <       
@@ -103,13 +122,17 @@ PROGRAM-HEADER--H_Stmts-H_Stmt--FunDef--Type----void
                                                                                                 Factor--Id------a       
                                                                                         )       
                                         ;       
+                                Stmt----Asig_E--Id------h       
+                                                =       
+                                                Expr----Factor--Decimal_Number1       
+                                                        +       
+                                                        Factor--TF------true    
+                                        ;       
                                 Stmt----Decl----Type----int     
                                                 Descs---Desc----Asig_E--Id------t       
                                                                         =       
-                                                                        Expr----Factor----      
-                                                                                        Id------a       
-                                                                                +       
-                                                                                Factor--Decimal_Number100     
+                                                                        Factor----      
+                                                                                Id------a       
                                         ;       
                                 Stmt----Asig_E--Id------c       
                                                 =       

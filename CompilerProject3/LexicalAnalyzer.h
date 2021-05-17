@@ -293,10 +293,18 @@ private:
             }
         }
         string op = code.substr(cur, n);
-        lex_result.push_back(make_pair(vector<string>{op, row_col(row, col), row_col(row, col+n-1)}, KEY_WORDS_MAP[op]));
-        
+        if(op == "//"){
+            while(code[cur+n] != '\n'){
+                n++;
+            }
+        }
+        else{
+            lex_result.push_back(make_pair(vector<string>{op, row_col(row, col), row_col(row, col+n-1)}, KEY_WORDS_MAP[op]));
+            
+        }
         col += n;
         cur += n;
+        
     }
 
     void check_number(){
@@ -355,6 +363,7 @@ private:
             else if(c == '"'){
                 check_string_constant();
             }
+            
             
             //handle operator (beginning with <, =, ...)
             else if(is_operator(c)){

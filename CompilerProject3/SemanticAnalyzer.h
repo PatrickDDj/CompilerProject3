@@ -7,61 +7,14 @@
 
 #include "Defines.h"
 #include "Variable.h"
+#include "Function.h"
+#include "ScopeManager.h"
 #include "Node.h"
 
 #ifndef SemanticAnalyzer_h
 #define SemanticAnalyzer_h
 
 
-//class Fucntion{
-//public:
-//    vector<pair<int, string> > parameters;
-//    int return_type;
-//};
-//
-//class FunctionManager
-
-
-class ScopeManager{
-private:
-    vector<int> usable_scopes;
-    
-    int HEADER_scope;
-    int cur_scope;
-
-public:
-    ScopeManager(){}
-    
-    void set_cur_scope(int scope){
-        cur_scope = scope;
-    }
-    
-    void set_HEADER_scope(int HEADER_scope){
-        this->HEADER_scope = HEADER_scope;
-    }
-    
-    const vector<int>& get_cur_usable_scopes(){
-        return usable_scopes;
-    }
-    
-    int get_cur_scope(){
-        return cur_scope;
-    }
-    
-    int get_HEADER_scope(){
-        return HEADER_scope;
-    }
-    
-    void jump_into_Block(int Block_id){
-        set_cur_scope(Block_id);
-        usable_scopes.push_back(Block_id);
-    }
-    
-    void jump_out_Block(){
-        usable_scopes.pop_back();
-        set_cur_scope(get_cur_usable_scopes().back());
-    }
-};
 
 class SemanticAnalyzer {
 public:
@@ -69,6 +22,7 @@ public:
     Node root;
     
     VariablsManager variables;
+    FunctionManager functions;
     ScopeManager scopes;
     
     SemanticAnalyzer(const Node& root):root(root){}
@@ -89,11 +43,13 @@ public:
         proc_MAIN(MAIN);
         
         variables.print_variables();
+        functions.print_functions();
         
     }
     
     void proc_Block(const Node& Block){
-        scopes.jump_into_Block(Block.id);
+        int scope = Block.id;
+        scopes.jump_into_Block(scope);
         
         const Node& Stmts = Block.sons[1];
         for(auto Stmt : Stmts.sons){
@@ -101,6 +57,8 @@ public:
         }
         
         scopes.jump_out_Block();
+//        variables.print_variables();
+//        variables.remove_scope(scope);
     }
     
     void proc_MAIN(const Node& MAIN){
@@ -325,16 +283,36 @@ public:
         }
     }
     
+    void proc_FunDef(const Node& FunDef){
+        int return_type = TYPE_MAP[FunDef.sons[0].sons[0].Component];
+        string function_name = FunDef.sons[1].sons[0].Component;
+        
+        vector<Parameter> parameters;
+        for(auto ParaDef : FunDef.sons[3].sons){
+            if(ParaDef.Component == _Para_Def_){
+                parameters.push_back(make_pair(TYPE_MAP[ParaDef.sons[0].sons[0].Component], ParaDef.sons[1].sons[0].Component));
+            }
+        }
+        
+        functions.add_function(function_name, parameters, return_type);
+    }
+    
     void proc_H_Stmt(const Node& H_Stmt){
         int symbol = SYMBOL_MAP[H_Stmt.Component];
         
         switch (symbol) {
-            case __Decl__:
+            case __Decl__:{
                 proc_Decl(H_Stmt);
                 break;
+            }
                 
+            case __Fun_Def__:{
+                proc_FunDef(H_Stmt);
+                break;
+            }
             default:
                 break;
+            
         }
     }
     

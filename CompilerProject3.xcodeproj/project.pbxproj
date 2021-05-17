@@ -26,6 +26,8 @@
 		D62A111326520D890099E4AF /* Variable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Variable.h; sourceTree = "<group>"; };
 		D62A111526520E280099E4AF /* Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
 		D676E155264BE4C50062F5C3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D697DEDD265255D100B91BC3 /* Function.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Function.h; sourceTree = "<group>"; };
+		D697DEDF26525D3800B91BC3 /* ScopeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScopeManager.h; sourceTree = "<group>"; };
 		D6CD7BA1264BBF4400FCC0EE /* SemanticAnalyzer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SemanticAnalyzer.h; sourceTree = "<group>"; };
 		D6F8952A2648D3A800434F79 /* CompilerProject3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CompilerProject3; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F8952D2648D3A800434F79 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -76,6 +78,8 @@
 				D6F895382648D40B00434F79 /* Node.h */,
 				D6CD7BA1264BBF4400FCC0EE /* SemanticAnalyzer.h */,
 				D62A111326520D890099E4AF /* Variable.h */,
+				D697DEDD265255D100B91BC3 /* Function.h */,
+				D697DEDF26525D3800B91BC3 /* ScopeManager.h */,
 			);
 			path = CompilerProject3;
 			sourceTree = "<group>";

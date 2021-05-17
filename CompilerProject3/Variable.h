@@ -162,6 +162,10 @@ public:
         return false;
     }
     
+    void remove_scope(int scope){
+        variables.erase(scope);
+    }
+    
     Variable& get_variable(int scope, string variable_name){
         return variables[scope][variable_name];
     }
@@ -187,7 +191,7 @@ public:
             get_variable(scope, variable_name) = v;
             return true;
         }
-        printf("[ERROR] Variable '%s' redefined\n", variable_name.c_str());
+        printf("[ERROR] Variable '%s' is already defined\n", variable_name.c_str());
         return false;
     }
     
@@ -244,12 +248,14 @@ public:
     
     void print_variables(){
         for(auto i : variables){
+            printf("-----------------------------------------\n");
             printf("Scope : %d\n", i.first);
             for(auto k : i.second){
                 string name = k.first;
                 Variable &v = k.second;
                 printf("Variable : %s(%s), Value : %s\n", name.c_str(), v.get_type().c_str(), v.get_val().c_str());
             }
+            printf("-----------------------------------------\n\n");
         }
     }
     
