@@ -99,11 +99,9 @@ PROGRAM-HEADER--H_Stmts-H_Stmt--FunDef--Type----void
                                                                                                                                 Factor--Decimal_Number10000   
                                                                                                                         +       
                                                                                                                         Factor--(       
-                                                                                                                                Expr----Expr----Factor--Decimal_Number98      
-                                                                                                                                                *       
-                                                                                                                                                Factor--Decimal_Number2       
-                                                                                                                                        +       
-                                                                                                                                        Factor--Decimal_Number1       
+                                                                                                                                Expr----Factor--Decimal_Number98      
+                                                                                                                                        *       
+                                                                                                                                        Factor--Decimal_Number2       
                                                                                                                                 )       
                                                                                 ;       
                                                                 }       

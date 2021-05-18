@@ -14,32 +14,29 @@ class Variable{
 public:
     int type;
     
-    int int_val=0;
-    float float_val=0.0;
-    bool bool_val=false;
+//    int int_val=0;
+//    float float_val=0.0;
+//    bool bool_val=false;
+    float val=0;
     
     Variable(){}
     Variable(int type):type(type){}
     Variable(const Variable &v){
         type = v.type;
-        int_val = v.int_val;
-        float_val = v.float_val;
-        bool_val = v.bool_val;
+        val = v.val;
     }
-    Variable(int type, int val):type(type), int_val(val){}
-    Variable(int type, float val):type(type), float_val(val){}
-    Variable(int type, bool val):type(type), bool_val(val){}
+    Variable(int type, float val):type(type), val(val){}
     string get_val() const{
         ostringstream stream;
         switch (type) {
             case __INT__:
-                stream << int_val;
+                stream << int(val);
                 break;
             case __FLOAT__:
-                stream << float_val;
+                stream << val;
                 break;
             case __BOOL__:
-                stream << bool_val;
+                stream << (val==1?"true":"false");
                 break;
                 
             default:
@@ -57,89 +54,73 @@ public:
         return type != __Empty__;
     }
     
-    void set_val(int val){int_val = val;}
-    void set_val(bool val){bool_val = val;};
-    void set_val(float val){float_val = val;}
-    
     friend Variable operator+(const Variable& a, const Variable& b){
         Variable v(a.type);
-        v.int_val = b.int_val + a.int_val;
-        v.float_val = b.float_val + a.float_val;
-        v.bool_val = b.bool_val + a.bool_val;
+        v.val = a.val + b.val;
         return v;
     }
     
     friend Variable operator-(const Variable& a, const Variable& b){
         Variable v(a.type);
-        v.int_val = a.int_val - b.int_val;
-        v.float_val = a.float_val - b.float_val;
-        v.bool_val = a.bool_val - b.bool_val;
+        v.val = a.val - b.val;
         return v;
     }
     
     friend Variable operator*(const Variable& a, const Variable& b){
         Variable v(a.type);
-        v.int_val = b.int_val * a.int_val;
-        v.float_val = b.float_val * a.float_val;
-        v.bool_val = b.bool_val * a.bool_val;
+        v.val = a.val * b.val;
         return v;
     }
     
     friend Variable operator==(const Variable& a, const Variable& b){
         Variable v(__BOOL__);
-        v.bool_val = (a.type==__INT__?a.int_val==b.int_val:(a.type == __FLOAT__? a.float_val==b.float_val:a.bool_val==b.bool_val));
+        v.val = (a.val == b.val);
         return v;
     }
     
     friend Variable operator>=(const Variable& a, const Variable& b){
         Variable v(__BOOL__);
-        v.bool_val = (a.type==__INT__?a.int_val>=b.int_val:(a.type == __FLOAT__? a.float_val>=b.float_val:a.bool_val>=b.bool_val));
+        v.val = (a.val >= b.val);
         return v;
     }
     
     friend Variable operator<=(const Variable& a, const Variable& b){
         Variable v(__BOOL__);
-        v.bool_val = (a.type==__INT__?a.int_val<=b.int_val:(a.type == __FLOAT__? a.float_val<=b.float_val:a.bool_val<=b.bool_val));
+        v.val = (a.val <= b.val);
         return v;
     }
     
     friend Variable operator>(const Variable& a, const Variable& b){
         Variable v(__BOOL__);
-        v.bool_val = (a.type==__INT__?a.int_val>b.int_val:(a.type == __FLOAT__? a.float_val>b.float_val:a.bool_val>b.bool_val));
+        v.val = (a.val > b.val);
         return v;
     }
     
     friend Variable operator<(const Variable& a, const Variable& b){
         Variable v(__BOOL__);
-        v.bool_val = (a.type==__INT__?a.int_val<b.int_val:(a.type == __FLOAT__? a.float_val<b.float_val:a.bool_val<b.bool_val));
+        v.val = (a.val < b.val);
         return v;
     }
     
     friend Variable operator++(Variable&a){
-        ++a.int_val;
-        ++a.float_val;
-        ++a.bool_val;
+        ++a.val;
         return Variable(a);
     }
     
     friend Variable operator++(Variable&a, int){
         Variable v(a);
-        a.int_val++;
-        a.float_val++;
-        a.bool_val++;
+        a.val++;
         return v;
     }
     
     friend Variable operator--(Variable&a){
-        --a.int_val;
-        --a.float_val;
+        --a.val;
         return Variable(a);
     }
     
     friend Variable operator--(Variable&a, int){
         Variable v(a);
-        a.int_val--;
-        a.float_val--;
+        a.val--;
         return v;
     }
     

@@ -36,7 +36,7 @@ int main(){
     // step into another scope
     if(true){
         // declare variable b, assign it as the result of RHS(based on precedence of different operators)
-        int b = a-10000+(98*2+1);
+        int b = a-10000+(98*2);
     }
     // bool calculation
     bool h = 1<(2*3+4+a);
