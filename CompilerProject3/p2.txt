@@ -39,7 +39,7 @@ int main(){
         int b = a-10000+(98*2);
     }
     // bool calculation
-    bool h = 1<(2*3+4+a);
+    bool h = 1>(2*3+4+a);
     
     //error : calculation between 'bool' and 'int' is illegal
     h = 1+true;

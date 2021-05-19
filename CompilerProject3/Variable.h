@@ -13,10 +13,6 @@
 class Variable{
 public:
     int type;
-    
-//    int int_val=0;
-//    float float_val=0.0;
-//    bool bool_val=false;
     float val=0;
     
     Variable(){}
@@ -36,7 +32,7 @@ public:
                 stream << val;
                 break;
             case __BOOL__:
-                stream << (val==1?"true":"false");
+                stream << (val>0?"true":"false");
                 break;
                 
             default:
@@ -156,12 +152,16 @@ public:
     }
     
     int seek_variable(const vector<int> usable_scopes, string variable_name){
+        
+        // seek this variable in the nearest scope
+        
         for(int i=usable_scopes.size()-1; i>=0; i--){
             int scope = usable_scopes[i];
             if(exists_variable(scope, variable_name)){
                 return scope;
             }
         }
+        
         printf("[ERROR] Variable '%s' has not been defined.\n", variable_name.c_str());
         return __EMPTY_SCOPE__;
     }
@@ -179,7 +179,7 @@ public:
     void set_variable(int scope, string variable_name, const Variable& v){
         Variable& u = get_variable(scope, variable_name);
         if(is_same_type(u, v)){
-            u = v;
+            u.val = v.val;
         }
         else{
             printf("[ERROR] Cannot assign variable '%s' from '%s' to '%s'\n",
@@ -220,23 +220,23 @@ public:
                 }
             }
         }
-        else{
-            printf("[ERROR] Calculation between '%s' and '%s' is forbidden\n", a.get_type().c_str(), b.get_type().c_str());
-        }
+        
+        printf("[ERROR] Calculation between '%s' and '%s' is forbidden\n", a.get_type().c_str(), b.get_type().c_str());
 
         return Variable(__Empty__);
     }
     
     void print_variables(){
         for(auto i : variables){
+            printf("-------------\n");
+            printf("Scope : %d\t|\n", i.first);
             printf("-----------------------------------------\n");
-            printf("Scope : %d\n", i.first);
             for(auto k : i.second){
                 string name = k.first;
                 Variable &v = k.second;
                 printf("Variable : %s(%s), Value : %s\n", name.c_str(), v.get_type().c_str(), v.get_val().c_str());
             }
-            printf("-----------------------------------------\n\n");
+            printf("-----------------------------------------\n\n\n");
         }
     }
     

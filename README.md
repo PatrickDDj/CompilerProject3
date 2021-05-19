@@ -174,5 +174,7 @@ int main(){
 
 #### b. Results
 
-<img src="./results.png" style="zoom:33%;" />
+<img src="./results.png" width="400px" />
+
+
 

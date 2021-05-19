@@ -40,8 +40,9 @@ public:
     
     void print_functions(){
         for(auto function : functions){
+            printf("--------------------\n");
+            printf("Function Name : %s\t|\n", function.first.c_str());
             printf("-----------------------------------------\n");
-            printf("Function Name : %s\n", function.first.c_str());
             printf("Parameters : ");
             for(auto parameter : function.second.parameters){
                 printf("%s(%s)\t",  parameter.second.c_str(), TYPE[parameter.first].c_str());
@@ -49,7 +50,7 @@ public:
             printf("\n");
             printf("Return type : %s\n", TYPE[function.second.return_type].c_str());
             
-            printf("-----------------------------------------\n\n");
+            printf("-----------------------------------------\n\n\n");
         }
     }
     

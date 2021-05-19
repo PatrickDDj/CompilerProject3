@@ -109,7 +109,7 @@ PROGRAM-HEADER--H_Stmts-H_Stmt--FunDef--Type----void
                                                 Descs---Desc----Asig_E--Id------h       
                                                                         =       
                                                                         Expr----Factor--Decimal_Number1       
-                                                                                <       
+                                                                                >       
                                                                                 Factor--(       
                                                                                         Expr----Expr----Expr----Factor--Decimal_Number2       
                                                                                                                 *       
