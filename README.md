@@ -1,8 +1,10 @@
 # CompilerProject3 : Semantic Analyzer
 
-
-
-
+```html
+<div>
+  dsfasd 
+</div>
+```
 
 ## Strategy
 
@@ -40,9 +42,10 @@
 
 
 
+
 > There must be some problems with md's parsing on GitHub, so the picture below is more clear.
 
-![](./Strategy.png)
+<img src="./Strategy.png" width="500px"/>
 
 ## Functions
 
