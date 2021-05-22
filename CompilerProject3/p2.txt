@@ -23,6 +23,8 @@ float x = 1.19;
 int main(){
     // you can still create the variable 'a' in another scope
     int a = 9900;
+    bool s = true;
+    bool ss = s;
     
     //error : redefinition of variable 'a'
     int a = 0;
@@ -53,6 +55,8 @@ int main(){
     
     //error : variable 'c' is not defined
     c = a;
+    
+    
 }
 
 

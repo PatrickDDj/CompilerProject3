@@ -67,6 +67,16 @@ PROGRAM-HEADER--H_Stmts-H_Stmt--FunDef--Type----void
                                                                         =       
                                                                         Factor--Decimal_Number9900    
                                         ;       
+                                Stmt----Decl----Type----bool    
+                                                Descs---Desc----Asig_E--Id------s       
+                                                                        =       
+                                                                        Factor--TF------true    
+                                        ;       
+                                Stmt----Decl----Type----bool    
+                                                Descs---Desc----Asig_E--Id------ss      
+                                                                        =       
+                                                                        Factor--Id------s       
+                                        ;       
                                 Stmt----Decl----Type----int     
                                                 Descs---Desc----Asig_E--Id------a       
                                                                         =       

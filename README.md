@@ -30,9 +30,9 @@
 
 **Factor -> Id		*(<font color='blue'>Factor.type = Id.type	Factor.val = Id.val</font>)***
 
-**Factor -> Id SingOp(++ --)		*(<font color='blue'>Factor.val = Id.val	Id.val=SingOp(Id.val)</font>)***
+**Factor -> Id SingOp(++ --)		*(<font color='blue'>Factor.val = Id.val	Id.val=SingOp(Id.val)</font>	<font color='red'>[ERROR]{ Id.type == BOOL }</font> )***
 
-**Factor -> SingOp(++ --) Id		*(<font color='blue'>Id.val=SingOp(Id.val)	Factor.val = Id.val</font>)***
+**Factor -> SingOp(++ --) Id		*(<font color='blue'>Id.val=SingOp(Id.val)	Factor.val = Id.val</font>	<font color='red'>[ERROR]{ Id.type == BOOL }</font>)***
 
 **Factor -> TF		*(<font color='blue'>Factor.type = BOOL	Factor.val = TF.val</font>)***
 
@@ -43,9 +43,6 @@
 
 
 
-> There must be some problems with md's parsing on GitHub, so the picture below is more clear.
-
-<img src="./Strategy.png" width="500px"/>
 
 ## Functions
 

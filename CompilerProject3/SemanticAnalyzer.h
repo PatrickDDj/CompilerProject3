@@ -137,7 +137,7 @@ public:
         int scope = variables.seek_variable(scopes.get_cur_usable_scopes(), variable_name);
         
         if(scope){
-            // TODO: calculate the value of expression
+            // calculate the value of expression
             Variable t = get_Unit(Asig_E.sons[2]);
             if(t.is_valid()){
                 variables.set_variable(scope, variable_name, t);
@@ -197,13 +197,13 @@ public:
                 if(scope){
                     Variable& v = variables.get_variable(scope, variable_name);
                     
-                    if(!(v.get_type()==_INT_ || v.get_type()==_FLOAT_)){
-                        printf("[ERROE] Only 'int' or 'float' variables can do '++'/'--' calucalation\n");
-                        break;
-                    }
-                    
                     // a++ a--
                     if (Factor.sons.size()>1){
+                        
+                        if(!(v.get_type()==_INT_ || v.get_type()==_FLOAT_)){
+                            printf("[ERROE] Only 'int' or 'float' variables can do '++'/'--' calucalation\n");
+                            break;
+                        }
                         
                         int single_op = SYMBOL_MAP[Factor.sons[1].Component];
                         
@@ -215,7 +215,6 @@ public:
                                 return v--;
                         }
                     }
-                    
                     
                     else{
                         return Variable(v);
