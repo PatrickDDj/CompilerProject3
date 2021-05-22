@@ -17,7 +17,7 @@ public:
     
     Variable(){}
     Variable(int type):type(type){}
-    Variable(const Variable &v){
+    Variable(const Variable& v){
         type = v.type;
         val = v.val;
     }

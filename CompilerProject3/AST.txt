@@ -127,6 +127,27 @@ PROGRAM-HEADER--H_Stmts-H_Stmt--FunDef--Type----void
                                                         Factor--TF------true    
                                         ;       
                                 Stmt----Decl----Type----int     
+                                                Descs---Desc----Asig_E--Id------y       
+                                                                        =       
+                                                                        Factor--(       
+                                                                                Expr----Factor--Decimal_Number1       
+                                                                                        +       
+                                                                                        Factor--Decimal_Number2       
+                                                                                Error())
+                                        ;       
+                                Stmt----Asig_E--Id------y       
+                                                =       
+                                                Expr----Factor--Decimal_Number2       
+                                                        +       
+                                                        Factor--Error(Expression)
+                                        ;       
+                                Stmt----Asig_E--Id------y       
+                                                =       
+                                                Factor--Decimal_Number2       
+                                        Error(;)
+                                Stmt----Error(Statement Word)
+                                Stmt----Error(Statement Word)
+                                Stmt----Decl----Type----int     
                                                 Descs---Desc----Asig_E--Id------t       
                                                                         =       
                                                                         Factor----      

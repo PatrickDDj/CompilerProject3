@@ -716,6 +716,7 @@ private:
             
             // get the next operator and its precedence
             string next_op = get_word();
+            
             int next_Prec = Op_Precedence[next_op];
             
             // if the next operator is prior to the current one

@@ -44,6 +44,10 @@ int main(){
     //error : calculation between 'bool' and 'int' is illegal
     h = 1+true;
     
+    int y = (1+2 ;
+    y = 2+;
+    y = 2 3;
+    
     // '--a' makes a = 9900 - 1 = 9989, but in calculation of 't' serves as 9990(new value)
     int t = --a;
     
