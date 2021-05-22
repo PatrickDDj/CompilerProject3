@@ -29,6 +29,7 @@
 		D697DEDD265255D100B91BC3 /* Function.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Function.h; sourceTree = "<group>"; };
 		D697DEDF26525D3800B91BC3 /* ScopeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScopeManager.h; sourceTree = "<group>"; };
 		D697DEE1265271C100B91BC3 /* results.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = results.png; sourceTree = "<group>"; };
+		D6AE58AD265937A1006826CC /* Strategy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Strategy.png; sourceTree = "<group>"; };
 		D6CD7BA1264BBF4400FCC0EE /* SemanticAnalyzer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SemanticAnalyzer.h; sourceTree = "<group>"; };
 		D6F8952A2648D3A800434F79 /* CompilerProject3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CompilerProject3; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F8952D2648D3A800434F79 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -53,6 +54,7 @@
 		D6F895212648D3A800434F79 = {
 			isa = PBXGroup;
 			children = (
+				D6AE58AD265937A1006826CC /* Strategy.png */,
 				D697DEE1265271C100B91BC3 /* results.png */,
 				D676E155264BE4C50062F5C3 /* README.md */,
 				D6F8952C2648D3A800434F79 /* CompilerProject3 */,

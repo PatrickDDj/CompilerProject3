@@ -1,6 +1,8 @@
 # CompilerProject3 : Semantic Analyzer
 
-[sources url](https://gist.github.com/CyberShadow/95621a949b07db295000)
+
+
+
 
 ## Strategy
 
@@ -38,9 +40,9 @@
 
 
 
+> There must be some problems with md's parsing on GitHub, so the picture below is more clear.
 
-
-
+![](/Users/patrickdd/Projects/XcodeC++/CompilerProject3/Strategy.png)
 
 ## Functions
 
