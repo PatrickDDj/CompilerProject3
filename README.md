@@ -1,44 +1,38 @@
 # CompilerProject3 : Semantic Analyzer
 
-```html
-<div>
-  dsfasd 
-</div>
-```
-
 ## Strategy
 
-**Decl -> Type Descs**		***(<font color='blue'>Descs.type = Type</font>)***
+**Decl -> Type Descs**		***( <font color='blue'>Descs.type = Type</font>)***
 
-**Descs -> Desc		*(<font color='blue'>Desc.type = Descs.type</font>)***
+**Descs -> Desc		*( <font color='blue'>Desc.type = Descs.type</font>)***
 
-**Descs -> Desc , Descs'		*(<font color='blue'>Desc.type = Descs.type	Descs'.type = Descs.type</font>)***
+**Descs -> Desc , Descs'		*( <font color='blue'>Desc.type = Descs.type	Descs'.type = Descs.type</font>)***
 
-**Desc -> Id		*(<font color='blue'>Id.type = Desc.type</font>)***
+**Desc -> Id		*( <font color='blue'>Id.type = Desc.type</font>)***
 
-**Desc -> Id = Expr		*(<font color='blue'>Id.type = Desc.type	Id.val = Expr.val</font> <font color='red'>	[ERROR]{ Id.type != Expr.type }</font> )***
+**Desc -> Id = Expr		*( <font color='blue'>Id.type = Desc.type	Id.val = Expr.val</font> <font color='red'>	[ERROR]{ Id.type != Expr.type }</font> )***
 
-**Expr -> Factor**		***(<font color='blue'>Expr.val = Factor.val	Expr.type = Factor.type</font>)***
+**Expr -> Factor**		***( <font color='blue'>Expr.val = Factor.val	Expr.type = Factor.type</font>)***
 
-**Expr -> Expr' BinOp(+ - * /) Expr''**		***(<font color='blue'>Expr.val = BinOp(Expr'.val, Expr''.val)	Expr.type=Expr'.type</font>	<font color='red'>[ERROR]{ Expr'.type != Expr''.type }</font> )***
+**Expr -> Expr' BinOp(+ - * /) Expr''**		***(<font color='blue'> Expr.val = BinOp(Expr'.val, Expr''.val)	Expr.type=Expr'.type</font>	<font color='red'>[ERROR]{ Expr'.type != Expr''.type }</font> )***
 
-**Expr -> Expr' BinOp(> < >= <= ==) Expr''**		***(<font color='blue'>Expr.val = BinOp(Expr'.val, Expr''.val)	Expr.type = BOOL</font>	<font color='red'>[ERROR]{ Expr'.type != Expr''.type }</font> )***
+**Expr -> Expr' BinOp(> < >= <= ==) Expr''**		***( <font color='blue'>Expr.val = BinOp(Expr'.val, Expr''.val)	Expr.type = BOOL</font>	<font color='red'>[ERROR]{ Expr'.type != Expr''.type }</font> )***
 
-**Factor -> Decimal_Number		*(<font color='blue'>Factor.type = INT	Factor.val = Number.val</font>)***
+**Factor -> Decimal_Number		*( <font color='blue'>Factor.type = INT	Factor.val = Number.val</font>)***
 
-**Factor -> Float_Number		*(<font color='blue'>Factor.type = FLOAT	Factor.val = Number.val</font>)***
+**Factor -> Float_Number		*( <font color='blue'>Factor.type = FLOAT	Factor.val = Number.val</font>)***
 
-**Factor -> Id		*(<font color='blue'>Factor.type = Id.type	Factor.val = Id.val</font>)***
+**Factor -> Id		*( <font color='blue'>Factor.type = Id.type	Factor.val = Id.val</font>)***
 
-**Factor -> Id SingOp(++ --)		*(<font color='blue'>Factor.val = Id.val	Id.val=SingOp(Id.val)</font>	<font color='red'>[ERROR]{ Id.type == BOOL }</font> )***
+**Factor -> Id SingOp(++ --)		*( <font color='blue'>Factor.val = Id.val	Id.val=SingOp(Id.val)</font>	<font color='red'>[ERROR]{ Id.type == BOOL }</font> )***
 
-**Factor -> SingOp(++ --) Id		*(<font color='blue'>Id.val=SingOp(Id.val)	Factor.val = Id.val</font>	<font color='red'>[ERROR]{ Id.type == BOOL }</font>)***
+**Factor -> SingOp(++ --) Id		*( <font color='blue'>Id.val=SingOp(Id.val)	Factor.val = Id.val</font>	<font color='red'>[ERROR]{ Id.type == BOOL }</font> )***
 
-**Factor -> TF		*(<font color='blue'>Factor.type = BOOL	Factor.val = TF.val</font>)***
+**Factor -> TF		*( <font color='blue'>Factor.type = BOOL	Factor.val = TF.val</font>)***
 
-**Factor -> (Expr)		*(<font color='blue'>Factor.type = Expr.type	Factor.val = Expr.val</font>)***
+**Factor -> (Expr)		*( <font color='blue'>Factor.type = Expr.type	Factor.val = Expr.val</font>)***
 
-**Asig_E -> Id = Expr		*(<font color='blue'>Id.val = Expr.val</font> <font color='red'>	[ERROR]{ Id.type != Expr.type }</font> )***
+**Asig_E -> Id = Expr		*( <font color='blue'>Id.val = Expr.val</font> <font color='red'>	[ERROR]{ Id.type != Expr.type }</font> )***
 
 
 
