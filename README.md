@@ -1,6 +1,6 @@
 # CompilerProject3 : Semantic Analyzer
 
-
+<b>sfafa</b>dagaddfg
 
 ## Strategy
 
@@ -35,6 +35,10 @@
 **Factor -> (Expr)		*(<font color='blue'>Factor.type = Expr.type	Factor.val = Expr.val</font>)***
 
 **Asig_E -> Id = Expr		*(<font color='blue'>Id.val = Expr.val</font> <font color='red'>	[ERROR]{ Id.type != Expr.type }</font> )***
+
+
+
+
 
 
 
@@ -93,6 +97,10 @@ int f(int a, int b){
 
 
 
+
+
+
+
 ## Errors
 
 #### a. Variables redefined in the same scope
@@ -141,6 +149,10 @@ int f(){
     return 0;
 }
 ```
+
+
+
+
 
 
 
