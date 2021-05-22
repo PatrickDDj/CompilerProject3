@@ -42,7 +42,7 @@
 
 > There must be some problems with md's parsing on GitHub, so the picture below is more clear.
 
-![](/Users/patrickdd/Projects/XcodeC++/CompilerProject3/Strategy.png)
+![](./Strategy.png)
 
 ## Functions
 
