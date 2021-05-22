@@ -1,6 +1,6 @@
 # CompilerProject3 : Semantic Analyzer
 
-<b>sfafa</b>dagaddfg
+<b><font color='blue'>sfafa</font></b>dagaddfg
 
 ## Strategy
 
