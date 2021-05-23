@@ -8,9 +8,11 @@
 
 **Descs -> Desc , Descs'		*( <font color='blue'>Desc.type = Descs.type	Descs'.type = Descs.type</font>)***
 
-**Desc -> Id		*( <font color='blue'>Id.type = Desc.type</font>)***
+**Desc -> Id		*( <font color='blue'>Id.type = Desc.type</font>	<font color='red'>[ERROR]{ Id.name exists }</font> )***
 
-**Desc -> Id = Expr		*( <font color='blue'>Id.type = Desc.type	Id.val = Expr.val</font> <font color='red'>	[ERROR]{ Id.type != Expr.type }</font> )***
+**Desc -> Id = Expr		*( <font color='blue'>Id.type = Desc.type	Id.val = Expr.val</font> <font color='red'>	[ERROR]{ Id.type != Expr.type	Id.name exists }</font> )***
+
+
 
 **Expr -> Factor**		***( <font color='blue'>Expr.val = Factor.val	Expr.type = Factor.type</font>)***
 
@@ -18,23 +20,43 @@
 
 **Expr -> Expr' BinOp(> < >= <= ==) Expr''**		***( <font color='blue'>Expr.val = BinOp(Expr'.val, Expr''.val)	Expr.type = BOOL</font>	<font color='red'>[ERROR]{ Expr'.type != Expr''.type }</font> )***
 
+
+
 **Factor -> Decimal_Number		*( <font color='blue'>Factor.type = INT	Factor.val = Number.val</font>)***
 
 **Factor -> Float_Number		*( <font color='blue'>Factor.type = FLOAT	Factor.val = Number.val</font>)***
 
-**Factor -> Id		*( <font color='blue'>Factor.type = Id.type	Factor.val = Id.val</font>)***
+**Factor -> Id		*( <font color='blue'>Factor.type = Id.type	Factor.val = Id.val</font>	<font color='red'>[ERROR]{ Id.name doesn't exist }</font> )***
 
-**Factor -> Id SingOp(++ --)		*( <font color='blue'>Factor.val = Id.val	Id.val=SingOp(Id.val)</font>	<font color='red'>[ERROR]{ Id.type == BOOL }</font> )***
+**Factor -> Id SingOp(++ --)		*( <font color='blue'>Factor.val = Id.val	Id.val=SingOp(Id.val)</font>	<font color='red'>[ERROR]{ Id.type == BOOL	Id.name doesn't exist }</font> )***
 
-**Factor -> SingOp(++ --) Id		*( <font color='blue'>Id.val=SingOp(Id.val)	Factor.val = Id.val</font>	<font color='red'>[ERROR]{ Id.type == BOOL }</font> )***
+**Factor -> SingOp(++ --) Id		*( <font color='blue'>Id.val=SingOp(Id.val)	Factor.val = Id.val</font>	<font color='red'>[ERROR]{ Id.type == BOOL	Id.name doesn't exist }</font> )***
 
 **Factor -> TF		*( <font color='blue'>Factor.type = BOOL	Factor.val = TF.val</font>)***
 
 **Factor -> (Expr)		*( <font color='blue'>Factor.type = Expr.type	Factor.val = Expr.val</font>)***
 
-**Asig_E -> Id = Expr		*( <font color='blue'>Id.val = Expr.val</font> <font color='red'>	[ERROR]{ Id.type != Expr.type }</font> )***
+**Asig_E -> Id = Expr		*( <font color='blue'>Id.val = Expr.val</font> <font color='red'>	[ERROR]{ Id.type != Expr.type	Id.name doesn't exist }</font> )***
 
 
+
+**IF -> if ( Expr ) Block		*( <font color='red'>[ERROR]{ Expr.type == Empty }</font> )***
+
+**ELSE -> else if ( Expr ) Block		*( <font color='red'>[ERROR]{ Expr.type == Empty }</font> )***
+
+**WHILE -> while ( Expr ) Block		*( <font color='red'>[ERROR]{ Expr.type == Empty }</font> )***
+
+
+
+**FunDef -> Type FunName ( ParasDef ) Block		*( <font color='blue'>FunDef.return_type = Type	FunDef.parameters = ParasDef.paramters</font>	<font color='red'>[ERROR]{ FunaName exists }</font> )***
+
+**ParasDef -> ParaDef		*( <font color='blue'>ParasDef.parameters.add(ParaDef.paramter)</font> )***
+
+**ParasDef -> ParaDef , ParasDef'		*( <font color='blue'>ParasDef.parameters.add(ParaDef.parameter)	ParasDef.parameters.add(ParasDef'.parameters)</font> )***
+
+**ParasDef -> Empty		*( <font color='blue'>ParaDef.paramater = Empty</font> )***
+
+**ParaDef -> Type Id		*( <font color='blue'>ParaDef.parameter.name = Id.name	ParaDef.parameter.type = Type</font> )***
 
 
 
